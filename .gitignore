@@ -1,0 +1,9 @@
+.git
+.idea
+*.log
+.vscode
+.DS_Store
+*.exe
+*.air.toml
+*/airTmpDir/
+cache
