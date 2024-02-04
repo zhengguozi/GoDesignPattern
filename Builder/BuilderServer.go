@@ -40,8 +40,67 @@ type XiaomiBuilder struct {
 	BaseBuilder
 }
 
-//func (builder XiaomiBuilder) SetBrand() Option {
-//	return func(car *Car) {
-//		cat.s
-//	}
-//}
+func (builder XiaomiBuilder) SetBrand(v string) Option {
+	return func(car *Car) {
+		car.Brand = "小米" + v
+	}
+}
+
+func (builder XiaomiBuilder) SetColor(v string) Option {
+	return func(car *Car) {
+		car.Color = "小米" + v
+	}
+}
+
+func (builder XiaomiBuilder) SetEngineType(v string) Option {
+	return func(car *Car) {
+		car.EngineType = "小米特制" + v
+	}
+}
+
+func (builder XiaomiBuilder) SetEnableSeatVentilation(v bool) Option {
+	return func(car *Car) {
+		car.EnableSeatVentilation = v
+	}
+}
+
+func (builder XiaomiBuilder) SetEnableSeatHeating(v bool) Option {
+	return func(car *Car) {
+		car.EnableSeatHeating = v
+	}
+}
+
+// 华为问界汽车builder
+type WenjieBuilder struct {
+	BaseBuilder
+}
+
+func (builder WenjieBuilder) SetBrand(v string) Option {
+	return func(car *Car) {
+		car.Brand = "问界" + v
+	}
+}
+
+func (builder WenjieBuilder) SetColor(v string) Option {
+	return func(car *Car) {
+		car.Color = "问界" + v
+	}
+}
+
+func (builder WenjieBuilder) SetEngineType(v string) Option {
+	return func(car *Car) {
+		car.EngineType = "问界特制" + v
+	}
+}
+
+func (builder WenjieBuilder) SetEnableSeatVentilation(v bool) Option {
+	return func(car *Car) {
+		car.EnableSeatVentilation = v
+	}
+}
+
+func (builder WenjieBuilder) SetEnableSeatHeating(v bool) Option {
+	return func(car *Car) {
+		car.EnableSeatHeating = v
+	}
+}
