@@ -3,6 +3,7 @@ package main
 import (
 	"goDesignPattern/AbstractFactory"
 	"goDesignPattern/Builder"
+	"goDesignPattern/Structure/Composite"
 )
 
 func testFactory() {
@@ -25,7 +26,27 @@ func testBuilder() {
 	director.ShowCar(director.MakeCar())
 }
 
+func testComposite() {
+	// 测试结构型-组合模式
+
+	file2 := &Composite.File{"File1-1"}
+	file3 := &Composite.File{"File1-2"}
+	fold1 := &Composite.Folder{Name: "File1-3"}
+
+	file4 := &Composite.File{"File1-3-1"}
+	file5 := &Composite.File{"File1-3-2"}
+	fold1.AddComponent(file4)
+	fold1.AddComponent(file5)
+
+	fold2 := &Composite.Folder{Name: "Fold1"}
+	fold2.AddComponent(file2)
+	fold2.AddComponent(file3)
+	fold2.AddComponent(fold1)
+	fold2.Search("", "关关")
+}
+
 func main() {
 	testFactory()
 	testBuilder()
+	testComposite()
 }
