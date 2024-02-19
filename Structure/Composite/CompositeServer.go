@@ -2,6 +2,7 @@ package Composite
 
 import "fmt"
 
+// 组合模式其实就是一种树形结构
 type Component interface {
 	Search(pre, keyword string)
 }
