@@ -3,6 +3,7 @@ package main
 import (
 	"goDesignPattern/AbstractFactory"
 	"goDesignPattern/Builder"
+	"goDesignPattern/Dicorator"
 	"goDesignPattern/Structure/Composite"
 )
 
@@ -45,8 +46,19 @@ func testComposite() {
 	fold2.Search("", "关关")
 }
 
+func testDicorator() {
+	// 测试装饰者模式，用管道来管理。  注意这里，父类参数接受子类参数，只能通过接口，或者子接口（嵌套父接口）。 像我们这里，middleware 用子接口的方式来实现
+	pipeline := Dicorator.Pipeline{}
+	pipeline.Send(&Dicorator.Context{
+		"请求经过",
+	}).Through(&Dicorator.Middleware1{}, &Dicorator.Middleware2{}, &Dicorator.Middleware3{}).Then(&Dicorator.ConcreteBusinessComponent{})
+
+	//Dicorator.TestAb(&(Dicorator.B{}))
+}
+
 func main() {
 	testFactory()
 	testBuilder()
 	testComposite()
+	testDicorator()
 }
