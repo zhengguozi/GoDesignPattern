@@ -1,9 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"goDesignPattern/AbstractFactory"
 	"goDesignPattern/Builder"
 	"goDesignPattern/Dicorator"
+	"goDesignPattern/Memento"
 	"goDesignPattern/Structure/Composite"
 )
 
@@ -56,9 +58,36 @@ func testDicorator() {
 	//Dicorator.TestAb(&(Dicorator.B{}))
 }
 
+func testMemento() {
+	// 测试备忘录模式
+
+	// 负责人
+	Caretaker := &Memento.Caretaker{make([]*Memento.Memento, 0)}
+
+	// 原发器
+	Origintor := &Memento.Originator{}
+	Origintor.SetState("one")
+	fmt.Println("当前状态：" + Origintor.GetState())
+	Caretaker.AddMemento(Origintor.CreateMemento())
+
+	Origintor.SetState("Two")
+	fmt.Println("当前状态：" + Origintor.GetState())
+	Caretaker.AddMemento(Origintor.CreateMemento())
+
+	Origintor.SetState("Three")
+	fmt.Println("当前状态：" + Origintor.GetState())
+	Caretaker.AddMemento(Origintor.CreateMemento())
+
+	// 恢复最开始的
+	Origintor.RestoreMemento(Caretaker.GetMemento(0))
+	fmt.Println("恢复")
+	fmt.Println("当前状态：" + Origintor.GetState())
+}
+
 func main() {
 	testFactory()
 	testBuilder()
 	testComposite()
 	testDicorator()
+	testMemento()
 }
