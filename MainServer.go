@@ -6,6 +6,7 @@ import (
 	"goDesignPattern/Builder"
 	"goDesignPattern/Dicorator"
 	"goDesignPattern/Memento"
+	"goDesignPattern/Strategy"
 	"goDesignPattern/Structure/Composite"
 )
 
@@ -84,7 +85,21 @@ func testMemento() {
 	fmt.Println("当前状态：" + Origintor.GetState())
 }
 
+func testStrategy() {
+	// 模拟一个参数，用于选择不同的策略
+	paymentMethod := "bitcoin" // 可以是 "credit_card", "paypal", "bitcoin"
+
+	// 从工厂获取策略
+	if strategy, ok := Strategy.GlobalPaymentStrategyFactory.GetStrategy(paymentMethod); ok {
+		strategy.Pay(100)
+	} else {
+		fmt.Println("Payment method not supported")
+	}
+}
+
 func main() {
+	testStrategy()
+	return
 	testFactory()
 	testBuilder()
 	testComposite()
